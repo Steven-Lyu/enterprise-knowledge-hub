@@ -10,3 +10,5 @@ storage_data/
 dist/
 build/
 *.log
+docs/
+/Agents.md
