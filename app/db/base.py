@@ -20,11 +20,9 @@ class Base(DeclarativeBase):
 def import_all_models() -> None:
     """集中导入所有 ORM 模型，让 ``Base.metadata`` 能注册完整表结构。
 
-    第 2 轮还没有真正的业务模型，所以这里只导入 ``app.models`` 包入口。
-    第 3 轮生成 ``Document``、``DocumentChunk``、``ProcessingTask``、
-    ``DocumentEvent`` 后，会在 ``app.models.__init__`` 中继续聚合它们。
-
-    这个函数看起来暂时“不做事”，但它为 Alembic 和测试建表保留了稳定入口。
+    ``app.models`` 包入口负责聚合 ``Document``、``DocumentChunk``、
+    ``ProcessingTask`` 和 ``DocumentEvent``。这个函数为 Alembic 和测试建表提供
+    稳定入口，调用后 ``Base.metadata`` 才能完整感知项目表结构。
     """
 
     import app.models  # noqa: F401

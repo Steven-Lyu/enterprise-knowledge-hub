@@ -64,7 +64,7 @@ class BaseModel(Base, IdMixin, TimestampMixin):
     这样表名不会被隐式规则影响，也更符合企业项目里迁移脚本需要稳定命名的要求。
     """
 
-    __abstract__ = True
+    __abstract__ = True  # 不给 BaseModel 建表，漏掉会报错！
 
 
 __all__ = ["BaseModel", "IdMixin", "TimestampMixin", "utc_now"]

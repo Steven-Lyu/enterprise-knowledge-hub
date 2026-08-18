@@ -1,12 +1,23 @@
 """ORM 模型聚合入口。
 
-第 2 轮只提供通用模型基类，还没有真正的业务表。
-第 3 轮生成文档、chunk、任务和事件模型后，会在这里集中导入并导出。
-
-保持这个入口的意义是：Alembic、测试建表、脚本初始化都只需要依赖一个稳定位置，
-而不是到处猜测“哪些模型文件需要被 import 一遍”。
+Alembic、测试建表和脚本初始化只需要导入这个包，就能把全部业务模型注册到
+同一个 ``Base.metadata``。新增模型时必须同步加入这里，否则模型代码虽然存在，
+迁移工具却无法发现对应表。
 """
 
 from app.models.base import BaseModel, IdMixin, TimestampMixin, utc_now
+from app.models.document import Document
+from app.models.document_chunk import DocumentChunk
+from app.models.document_event import DocumentEvent
+from app.models.processing_task import ProcessingTask
 
-__all__ = ["BaseModel", "IdMixin", "TimestampMixin", "utc_now"]
+__all__ = [
+    "BaseModel",
+    "Document",
+    "DocumentChunk",
+    "DocumentEvent",
+    "IdMixin",
+    "ProcessingTask",
+    "TimestampMixin",
+    "utc_now",
+]

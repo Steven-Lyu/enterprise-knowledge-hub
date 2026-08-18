@@ -3,7 +3,7 @@
 from enum import StrEnum
 
 
-class DocumentStatus(StrEnum):
+class DocumentStatus(StrEnum):  # 文档本身状态
     UPLOADED = "uploaded"
     QUEUED = "queued"
     PROCESSING = "processing"
@@ -12,7 +12,7 @@ class DocumentStatus(StrEnum):
     ARCHIVED = "archived"
 
 
-class TaskStatus(StrEnum):
+class TaskStatus(StrEnum):  # worker的状态
     PENDING = "pending"
     RUNNING = "running"
     SUCCESS = "success"
@@ -39,7 +39,7 @@ class TaskType(StrEnum):
     PARSE_DOCUMENT = "parse_document"
 
 
-class DocumentEventType(StrEnum):
+class DocumentEventType(StrEnum):  # 文档处理过程中的事件（文档的时间线）
     QUEUED = "queued"
     RUNNING = "running"
     RETRYING = "retrying"
